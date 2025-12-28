@@ -1,0 +1,212 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior: smooth;
+}
+body{
+    height: 100vh;
+    overflow: hidden;
+}
+.resume{
+    height:100%;
+    display: grid;
+    grid-template-columns: 8fr 2fr;
+    grid-template-rows: 9fr 0.5fr;
+    grid-template-areas: 
+    "m n"
+    "f n";
+}
+main{
+    background-color: #403d39;
+    grid-area: m;
+    color:#ccc5b9;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    display: grid;
+    grid-template-rows: repeat(4, 100vh);
+    grid-template-columns: 100vh;
+    width:80vw;
+    grid-template-areas: 
+    "edu"
+    "projects"
+    "artworks"
+    "contact";
+    overflow-y: auto;
+
+}
+nav{
+    background-color: #dbd5c2;
+    grid-area: n;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    position: sticky;
+}
+.navContent{
+    color:#403d39;
+    height: 100%;
+    width: 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    border:none;
+}
+nav>button>a{
+       text-decoration: none;
+       color:#403d39;
+       font-size: 2em;
+}
+footer{
+    grid-area: f;
+    background-color: #ccc5b9;
+    display: flex;
+    justify-content: center;
+    position: sticky;
+
+}
+i{
+    color:#403d39;
+    margin: 8px 10px;
+}
+.code{
+    font-family: "Jersey 10", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.6em;
+}
+.art{
+    font-family: "Mountains of Christmas", serif;
+    font-weight: 700;
+    font-style: normal;
+}
+.welcometext{
+    padding: 60px 80px;
+}
+.navContent:hover{
+    background-color: #ccc5b9;
+}
+.education{
+    padding:20px 0 0 30px;
+    background-color: #8a817c;
+    color:#fffcf2;
+    height: 100vh;
+    width: 45vh;
+    grid-area: education;
+}
+#edu{
+    grid-area: edu;
+    display: flex;
+    justify-content: space-between;
+    width: 80vw;
+    background-image: url("assets/art2.png");
+    background-size: 400px 400px;
+    background-repeat: no-repeat;
+    background-position: 60% 80%;
+}
+.art6>h2>a>i{
+    font-size: 1em;
+    color:#ccc5b9;
+}
+#projects{
+    grid-area: projects;
+    background-color: #8a817c;
+    width:80vw;
+    height:100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.projectContainer{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border: 8px solid #dbd5c2;
+}
+#projects>h2{
+    font-family: "Jersey 10", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 3em;
+}
+#artworks{
+    grid-area: artworks;
+    background-color: #403d39;
+    width:80vw;
+    height:100vh;
+    display:grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-areas: 
+    "w w w x x x x x"
+    "w w w x x x x x"
+    "z z z x x x x x"
+    "z z z y y y y y";
+}
+.art1{
+    background-image: url("assets/art1.jpg");
+    background-size:cover;
+    grid-area: w;
+}
+.art3{
+    grid-area: z;
+    background-image: url("assets/art3.jpg");
+    background-size:cover;
+}
+.p1{
+    background-image: url("assets/p1.png");
+    background-size: cover;
+    height:45vh;
+    width: 30vw;
+}
+.p2{
+    background-image: url("assets/p2.png");
+    background-size: cover;
+    height:45vh;
+    width: 30vw;
+}
+
+.art5{
+    grid-area: x;
+    background-size:cover;
+    background-image: url("assets/art5.jpg");
+}
+.art6{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-area: y;
+    background-size:cover;
+    background-color: #403d39;
+    font-size: 2em;
+    font-family: "Mountains of Christmas", serif;
+    font-weight: 700;
+    font-style: normal;
+    transform: translate(0, -1em);
+
+}
+#contact{
+    grid-area: contact;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #8a817c;
+    width:80vw;
+    height:100vh
+}
+.aboutLinks>i{
+    font-size: 4em;
+    color:#292724
+}
+.aboutLinks:hover{
+    font-size: 1.2em;
+}
+i:hover{
+      color:#403d39;
+}
