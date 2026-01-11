@@ -1,0 +1,98 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+header{
+    margin-top: 60px;
+    font-family: "Gloria Hallelujah", cursive;
+    font-weight: 400;
+    font-style: normal;
+    text-decoration: 2px underline #FFE882;
+}
+.menu{
+    margin-top:60px ;
+    width: 70vw;
+    border: 2px solid #FFE882;
+    padding: 20px 40px;
+
+}
+table{
+    height: 100%;
+    width: 100%;
+}
+tr{
+    height:50px;
+}
+.food1{
+    background-image: url("assets/food1.png");
+}
+.food2{
+    background-image: url("assets/food2.png");
+}
+.food3{
+    background-image: url("assets/food3.png");
+}
+.food4{
+    background-image: url("assets/food4.png");
+}
+.food5{
+    background-image: url("assets/food5.png");
+}
+.food6{
+    background-image: url("assets/food6.png");
+}
+.food7{
+    background-image: url("assets/food7.png");
+}
+.food8{
+    background-image: url("assets/food8.png");
+}
+.food9{
+    background-image: url("assets/food9.png");
+}
+.food1,
+.food2,
+.food3,
+.food4,
+.food5,
+.food6,
+.food7,
+.food8,
+.food9{
+    height:75px;
+    width:85px;
+    background-size: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.item{
+    font-size: 10px;
+    display:flex;
+    justify-content:space-between;
+
+}
+.desc{
+    width:150px;
+    background-color: #ffffff;
+    font-family: "Gloria Hallelujah", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+th{
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    text-decoration: 2px underline #FFE882;
+}
+h4{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 800;
+}
