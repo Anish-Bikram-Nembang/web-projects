@@ -19,8 +19,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 16px;
+  gap: 4px;
 }
 .screen {
   width: 100%;
@@ -29,68 +30,51 @@
   border-radius: 20px;
 }
 .btns {
+  margin-top: 8px;
   width: 100%;
-  height: 80%;
+  height: 100%;
   display: grid;
-  grid-template-columns: 1fr 8fr 1fr;
-  align-items: end;
-  gap: 8px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  place-items: center;
 }
-.numpad {
-  width: 90%;
-  height: 80%;
-  grid-column: 2 / 3;
+.numbers {
+  height: 100%;
+  width: 100%;
+  grid-column: 1 / 4;
+  grid-row: 2 / 6;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  place-items: end;
-  align-items: center;
-  gap: 2px;
-}
-.operators {
-  grid-column: 3 / 4;
-  width: 100%;
-  height: 80%;
-  display: grid;
-  grid-template-rows: repeat(6, 1fr);
   place-items: center;
-  gap: 2px;
 }
-.operators > .btn {
-  background-color: grey;
+.numbers > .btn {
+  background-color: black;
+  border: none;
+  color: #e8eaed;
+}
+.numbers > .btn:hover {
+  background-color: #3e3e3e;
   color: white;
 }
 .btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: large;
   cursor: pointer;
   width: 50px;
-  height: 40px;
+  height: 50px;
   border: none;
+  border: 2px solid grey;
   border-radius: 10px;
 }
-.span-2-row {
-  grid-row: span 2;
-  height: 60px;
-  border-radius: 10px;
+.btn-svg {
+  height: 50%;
+  width: 50%;
+  stroke: black;
 }
-
-.numpad > .btn {
-  background-color: #000000;
-  color: #ffffff;
-}
-.utils {
-  grid-column: 1 / 2;
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  gap: 8px;
-}
-.vertical-text {
-  display: flex;
-  flex-direction: column;
-  height: 120px;
-}
-.vertical-text > span {
-  width: 100%;
-  text-align: center;
+.bi-backspace {
+  height: 40%;
 }
