@@ -28,23 +28,25 @@
               />
             </svg>
           </button>
-          <button type="button" class="btn">AC</button>
+          <button type="button" class="btn" onclick="clearScreen()">AC</button>
           <div class="numbers">
-            <button type="button" class="btn">7</button>
-            <button type="button" class="btn">8</button>
-            <button type="button" class="btn">9</button>
-            <button type="button" class="btn">4</button>
-            <button type="button" class="btn">5</button>
-            <button type="button" class="btn">6</button>
-            <button type="button" class="btn">1</button>
-            <button type="button" class="btn">2</button>
-            <button type="button" class="btn">3</button>
-            <button type="button" class="btn">0</button>
-            <button type="button" class="btn">.</button>
+            <button type="button" class="btn" onclick="addElement(7)">7</button>
+            <button type="button" class="btn" onclick="addElement(8)">8</button>
+            <button type="button" class="btn" onclick="addElement(9)">9</button>
+            <button type="button" class="btn" onclick="addElement(4)">4</button>
+            <button type="button" class="btn" onclick="addElement(5)">5</button>
+            <button type="button" class="btn" onclick="addElement(6)">6</button>
+            <button type="button" class="btn" onclick="addElement(1)">1</button>
+            <button type="button" class="btn" onclick="addElement(2)">2</button>
+            <button type="button" class="btn" onclick="addElement(3)">3</button>
+            <button type="button" class="btn" onclick="addElement(0)">0</button>
+            <button type="button" class="btn" onclick="addElement('.')">
+              .
+            </button>
             <button type="button" class="btn" onclick="calc()">=</button>
           </div>
-          <button type="button" class="btn">%</button>
-          <button type="button" class="btn">
+          <button type="button" class="btn" onclick="addElement('%')">%</button>
+          <button type="button" class="btn" onclick="deleteElement()">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -62,10 +64,10 @@
             </svg>
           </button>
 
-          <button type="button" class="btn">/</button>
-          <button type="button" class="btn">x</button>
-          <button type="button" class="btn">-</button>
-          <button type="button" class="btn" onclick="changeValue()">+</button>
+          <button type="button" class="btn" onclick="addElement('/')">/</button>
+          <button type="button" class="btn" onclick="addElement('*')">x</button>
+          <button type="button" class="btn" onclick="addElement('-')">-</button>
+          <button type="button" class="btn" onclick="addElement('+')">+</button>
         </div>
       </div>
     </div>

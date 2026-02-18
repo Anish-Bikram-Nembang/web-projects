@@ -3,19 +3,21 @@ var screen = document.getElementsByClassName("screen")[0];
 function calc() {
   const input = screen.value;
   screen.value = "";
-  const nums = [];
-  for (let i = 0; i < input.length; i++) {
-    let currentDigit = parseInt(input[i]);
-    if (!isNaN(currentDigit)) {
-      if (i == 0 || isNaN(parseInt(input[i - 1]))) {
-        nums.push(currentDigit);
-      } else {
-        nums.push(nums.pop() * 10 + currentDigit);
-      }
-    } else {
-      nums.push(input[i]);
-    }
-  }
+  let nums = [];
+  // for (let i = 0; i < input.length; i++) {
+  //   let currentDigit = parseFloat(input[i]);
+  //   if (!isNaN(currentDigit)) {
+  //     if (i == 0 || isNaN(parseFloat(input[i - 1]))) {
+  //       nums.push(currentDigit);
+  //     } else {
+  //       nums.push(nums.pop() * 10 + currentDigit);
+  //     }
+  //   } else {
+  //
+  //     nums.push(input[i]);
+  //   }
+  // }
+  nums = input.split(/[+/*%-]/);
   console.log(nums);
   var result = nums.pop();
   var current;
@@ -39,4 +41,22 @@ function calc() {
     }
   }
   screen.value = result.toString();
+}
+
+function addElement(value) {
+  var newInput;
+  if (typeof value != "string") {
+    newInput = screen.value + value.toString();
+  } else {
+    newInput = screen.value + value;
+  }
+  screen.value = newInput;
+}
+
+function clearScreen() {
+  screen.value = "";
+}
+
+function deleteElement() {
+  screen.value = screen.value.slice(0, -1);
 }
