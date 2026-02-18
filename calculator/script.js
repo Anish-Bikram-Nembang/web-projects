@@ -4,43 +4,35 @@ function calc() {
   const input = screen.value;
   screen.value = "";
   let nums = [];
-  // for (let i = 0; i < input.length; i++) {
-  //   let currentDigit = parseFloat(input[i]);
-  //   if (!isNaN(currentDigit)) {
-  //     if (i == 0 || isNaN(parseFloat(input[i - 1]))) {
-  //       nums.push(currentDigit);
-  //     } else {
-  //       nums.push(nums.pop() * 10 + currentDigit);
-  //     }
-  //   } else {
-  //
-  //     nums.push(input[i]);
-  //   }
-  // }
-  nums = input.split(/[+/*%-]/);
-  console.log(nums);
-  var result = nums.pop();
-  var current;
-  while ((current = nums.pop()) != undefined) {
-    switch (current) {
-      case "+":
-        result += nums.pop();
-        break;
-      case "*":
-        result *= nums.pop();
-        break;
-      case "/":
-        result /= nums.pop();
-        break;
-      case "-":
-        result -= nums.pop();
-        break;
-      default:
-        result = "ERROR";
-        break;
+  for (let i = 0; i < input.length; i++) {
+    let currentDigit = parseFloat(input[i]);
+    if (!isNaN(currentDigit)) {
+      if (i == 0 || isNaN(parseFloat(input[i - 1]))) {
+        nums.push(currentDigit);
+      } else {
+        nums.push(nums.pop() * 10 + currentDigit);
+      }
+    } else {
+      nums.push(input[i]);
     }
   }
-  screen.value = result.toString();
+  // nums = input.split(/[+/*%-]/);
+  console.log(nums);
+  let outputQueue = [];
+  let operatorStack = [];
+  for (let i = 0; i < nums.queue; i++) {
+    if (typeof nums[i] === "number") {
+      outputQueue.push(nums[i]);
+    } else {
+      let operatorOnTop = 0;
+      while (operatorOnTop != undefined) {
+        operatorInInput = nums[i];
+        operatorOnTop = operatorStack.pop();
+        if (precedence(operatorInInput) <= precedence(operatorOnTop)) {
+        }
+      }
+    }
+  }
 }
 
 function addElement(value) {
