@@ -7,50 +7,17 @@ precedence.set("/", 3);
 precedence.set("+", 0);
 precedence.set("-", 0);
 
-//main logic calculator function
+//function to setup data structures for "Shunting yard algorithm" and display result WIP****
 function calc() {
-  const input = screen.value;
-  clearScreen();
-  let nums = parseInput(input);
-  let inputLength = input.length;
-  while (inputLength > 0) {
-    let current = input[i];
-    if (isNaN(current)) input.replace(current.toString(), "");
-    inputLength -= current.toString().length;
-  }
-  console.log(nums);
-  let outputQueue = [];
+  let nums = parseInput(screen.value);
+  let output = [];
   let operatorStack = [];
-  for (let i = 0; i < nums.length; i++) {
-    if (typeof nums[i] === "number") {
-      outputQueue.push(nums[i]);
-    } else {
-      if (valid(nums[i])) {
-        let operatorOnTop = 0;
-        operatorInInput = nums[i];
-        while (operatorOnTop != undefined) {
-          operatorOnTop = operatorStack.pop();
-          if (
-            precedence.get(operatorInInput) <= precedence.get(operatorOnTop)
-          ) {
-            outputQueue.push(operatorOnTop);
-            operatorStack.push(operatorInInput);
-          } else {
-            operatorStack.push(operatorOnTop);
-            operatorStack.push(operatorInInput);
-            break;
-          }
-        }
-      } else {
-        displayError();
-      }
-    }
-  }
-  pushOperatorToQueue(operatorStack, outputQueue);
-  screen.value = calcResult(outputQueue);
+  clearScreen();
+  pushOperatorToQueue(operatorStack, output);
+  screen.value = calcResult(output);
 }
 
-//calculate the postfix output outputQueue NEEDS TUNINGGGGG*****AND MORE VALIDATION CHECKS*****
+//calculate the postfix output, main calculation logic
 function calcResult(queue) {
   let result = [];
   let operand1, operand2;
@@ -58,7 +25,7 @@ function calcResult(queue) {
     if (typeof queue[i] === "number") {
       result.push(queue[i]);
     } else {
-      //NEEDS RESULT.POP() CHECKS AND OPERATOR CHECKS
+      //NEEDS RESULT.POP() CHECKS AND OPERATOR CHECKS and FINAL RESULT ARRAY CHECKS
       operand1 = result.pop();
       operand2 = result.pop();
       switch (queue[i]) {
@@ -80,8 +47,28 @@ function calcResult(queue) {
   return result[i].toString();
 }
 
-//function to push operators to queue
-//function pushOperatorToQueue(operatorStack, outputQueue);
+//function to parse input
+function parseInput(input) {
+  let parsedInput = [];
+  while (input.length > 0) {
+    if (isNaN(parseFloat(input[0]))) {
+      parsedInput.push(input[0]);
+      input = input.replace(input[0], "");
+    } else {
+      parsedInput.push(parseFloat(input));
+      input = input.replace(parseFloat(input).toString(), "");
+    }
+  }
+  return parsedInput;
+}
+
+//function to push operators to output
+function pushOperatorToQueue(operatorStack, output) {
+  let operator;
+  while ((operator = operatorStack.pop()) != "undefined") {
+    output.push(operator);
+  }
+}
 
 //function to check validity of operators
 function valid(operator) {
@@ -109,7 +96,7 @@ function addElement(value) {
   }
   screen.value = newInput;
 }
-//utility function to clear screen
+//function to clear screen
 function clearScreen() {
   screen.value = "";
 }
