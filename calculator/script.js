@@ -13,6 +13,31 @@ function calc() {
   let output = [];
   let operatorStack = [];
   clearScreen();
+  //TO DO
+  console.log(nums);
+  for (let i = 0; i < nums.length; i++) {
+    if (typeof nums[i] === "number") {
+      output.push(nums[i]);
+    } else {
+      //shouldn't need to check for operator validity, should check in parseInput()
+      let operatorOnTop = operatorStack.pop();
+      //if operator stack is empty
+      if (typeof operatorOnTop === "undefined") {
+        operatorStack.push(nums[i]);
+      } else {
+        //check precedence of operators
+        //while precedence is lower
+        while (precedence.get(nums[i]) <= precedence.get(operatorOnTop)) {
+          output.push(operatorOnTop);
+          operatorOnTop = operatorStack.pop();
+        }
+        if (precedence.get(nums[i]) > precedence.get(operatorOnTop)) {
+          operatorStack.push(operatorOnTop);
+          operatorStack.push(nums[i]);
+        }
+      }
+    }
+  }
   pushOperatorToQueue(operatorStack, output);
   screen.value = calcResult(output);
 }
@@ -44,7 +69,7 @@ function calcResult(queue) {
       }
     }
   }
-  return result[i].toString();
+  return result[0].toString();
 }
 
 //function to parse input
@@ -65,7 +90,7 @@ function parseInput(input) {
 //function to push operators to output
 function pushOperatorToQueue(operatorStack, output) {
   let operator;
-  while ((operator = operatorStack.pop()) != "undefined") {
+  while (typeof (operator = operatorStack.pop()) != "undefined") {
     output.push(operator);
   }
 }
