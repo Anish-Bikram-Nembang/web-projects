@@ -4,6 +4,7 @@ var screen = document.getElementsByClassName("screen")[0];
 let precedence = new Map();
 precedence.set("*", 1);
 precedence.set("/", 1);
+precedence.set("%", 1);
 precedence.set("+", 0);
 precedence.set("-", 0);
 
@@ -64,6 +65,9 @@ function calcResult(queue) {
         case "/":
           result.push(operand2 / operand1);
           break;
+        case "%":
+          result.push(operand2 % operand1);
+          break;
       }
     }
   }
@@ -72,17 +76,8 @@ function calcResult(queue) {
 
 //function to parse input
 function parseInput(input) {
-  let parsedInput = [];
-  while (input.length > 0) {
-    if (isNaN(parseFloat(input[0]))) {
-      parsedInput.push(input[0]);
-      input = input.replace(input[0], "");
-    } else {
-      parsedInput.push(parseFloat(input));
-      input = input.replace(parseFloat(input).toString(), "");
-    }
-  }
-  return parsedInput;
+  const tokens = input.match(/\d+(\.\d+)?|[+\-*/%]/g);
+  return tokens.map((token) => (isNaN(token) ? token : Number(token)));
 }
 
 //function to push operators to output
@@ -99,6 +94,7 @@ function valid(operator) {
     operator === "+" ||
     operator === "-" ||
     operator === "*" ||
+    operator === "%" ||
     operator === "/"
   )
     return true;
