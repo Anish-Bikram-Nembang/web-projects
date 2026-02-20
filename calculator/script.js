@@ -2,8 +2,8 @@ var screen = document.getElementsByClassName("screen")[0];
 
 //precedence of operators
 let precedence = new Map();
-precedence.set("*", 2);
-precedence.set("/", 3);
+precedence.set("*", 1);
+precedence.set("/", 1);
 precedence.set("+", 0);
 precedence.set("-", 0);
 
@@ -13,28 +13,26 @@ function calc() {
   let output = [];
   let operatorStack = [];
   clearScreen();
-  //TO DO
-  console.log(nums);
-  for (let i = 0; i < nums.length; i++) {
+  let length = nums.length;
+  for (let i = 0; i < length; i++) {
     if (typeof nums[i] === "number") {
       output.push(nums[i]);
     } else {
       //shouldn't need to check for operator validity, should check in parseInput()
-      let operatorOnTop = operatorStack.pop();
       //if operator stack is empty
-      if (typeof operatorOnTop === "undefined") {
+      if (operatorStack.length < 1) {
         operatorStack.push(nums[i]);
       } else {
         //check precedence of operators
         //while precedence is lower
-        while (precedence.get(nums[i]) <= precedence.get(operatorOnTop)) {
-          output.push(operatorOnTop);
-          operatorOnTop = operatorStack.pop();
+        while (
+          operatorStack.length > 0 &&
+          precedence.get(nums[i]) <=
+            precedence.get(operatorStack[operatorStack.length - 1])
+        ) {
+          output.push(operatorStack.pop());
         }
-        if (precedence.get(nums[i]) > precedence.get(operatorOnTop)) {
-          operatorStack.push(operatorOnTop);
-          operatorStack.push(nums[i]);
-        }
+        operatorStack.push(nums[i]);
       }
     }
   }
