@@ -13,6 +13,11 @@ let history = [];
 
 //function to setup data structures for "Shunting yard algorithm" and display result
 function calc() {
+  if (checkSyntax(screen.value)) {
+    clearScreen();
+    displayError();
+    return;
+  }
   let nums = parseInput(screen.value);
   let output = [];
   let operatorStack = [];
@@ -77,7 +82,9 @@ function calcResult(queue) {
       }
     }
   }
-  return result[0].toFixed(4).toString();
+  return Number.isInteger(result[0])
+    ? result[0].toString()
+    : result[0].toFixed(4).toString();
 }
 
 //function to parse input
@@ -94,18 +101,6 @@ function pushOperatorToQueue(operatorStack, output) {
   }
 }
 
-//function to check validity of operators
-function valid(operator) {
-  if (
-    operator === "+" ||
-    operator === "-" ||
-    operator === "*" ||
-    operator === "%" ||
-    operator === "/"
-  )
-    return true;
-  else return false;
-}
 //function to display error
 function displayError() {
   screen.value = "ERROR";
@@ -144,4 +139,8 @@ function appendNewResultToHistory(result) {
   const li = document.createElement("li");
   li.textContent = result;
   historyList.appendChild(li);
+}
+
+function checkSyntax(input) {
+  return /[^0-9+\-*/().\s]/.test(input);
 }
