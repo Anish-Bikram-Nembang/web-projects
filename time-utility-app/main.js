@@ -36,7 +36,7 @@ class StopWatch {
     }
   }
   reset() {
-    stop();
+    this.stop();
     this.startTime = 0;
     this.elapsedTime = 0;
     this.element.textContent = "0.00";
