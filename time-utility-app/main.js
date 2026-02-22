@@ -11,26 +11,43 @@ updateDateTime();
 setInterval(updateDateTime, 1000);
 
 class StopWatch {
+  #running = false;
   constructor(className) {
-    this.time = 0;
+    this.startTime = 0;
+    this.elapsedTime = 0;
     this.element = document.getElementsByClassName(className)[0];
   }
   start() {
-    let startTime = Date.now();
-    this.intervalID = setInterval(() => {
-      this.time = (Date.now() - startTime) / 1000;
-      this.element.textContent = this.time;
-    }, 1000);
+    if (this.#running === false) {
+      this.#running = true;
+      this.startTime = Date.now();
+      this.startIntervalID = setInterval(() => {
+        const currentTime = Date.now();
+        const total = this.elapsedTime + (currentTime - this.startTime);
+        this.element.textContent = (total / 1000).toFixed(2);
+      }, 16);
+    }
   }
   stop() {
-    clearInterval(this.intervalID);
+    if (this.#running) {
+      clearInterval(this.startIntervalID);
+      this.#running = false;
+      this.elapsedTime += Date.now() - this.startTime;
+    }
   }
-  reset() {}
+  reset() {
+    stop();
+    this.startTime = 0;
+    this.elapsedTime = 0;
+    this.element.textContent = "0.00";
+  }
 }
 
 const watch = new StopWatch("stop-watch-time");
 const startButton = document.getElementById("start");
 const stopButton = document.getElementById("stop");
-watch.element.textContent = watch.time;
+const resetButton = document.getElementById("reset");
+watch.element.textContent = "0.00";
 startButton.addEventListener("click", watch.start.bind(watch));
 stopButton.addEventListener("click", watch.stop.bind(watch));
+resetButton.addEventListener("click", watch.reset.bind(watch));
