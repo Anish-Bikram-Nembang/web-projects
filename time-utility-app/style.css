@@ -15,8 +15,14 @@ button {
   padding: 4px 8px;
   border-radius: 12px;
   border: 1px solid grey;
+  min-width: 80px;
 }
-.stop-watch-time {
+#stop-watch-reset,
+#timer-reset {
+  min-width: 160px;
+}
+.stop-watch-time,
+.timer-time {
   margin: 24px 0;
   display: flex;
 }
