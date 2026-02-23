@@ -15,15 +15,22 @@
   <body>
     <h1 class="time"></h1>
     <h3 class="date"></h3>
-    <br />
-    <hr />
-    <br />
-    <div class="stop-watch">
-      <h2>Stop watch</h2>
-      <h1 class="stop-watch-time">0.hefsd00</h1>
-      <button type="button" id="start">Start</button>
-      <button type="button" id="stop">Stop</button>
-      <button type="button" id="reset">Reset</button>
+    <div class="utils">
+      <div class="stop-watch">
+        <h2>Stop watch</h2>
+        <h1 class="stop-watch-time">0.00</h1>
+        <button type="button" id="stopwatch-start">Start</button>
+        <button type="button" id="stopwatch-stop">Stop</button>
+        <button type="button" id="stopwatch-reset">Reset</button>
+      </div>
+      <div class="timer">
+        <h2>Timer</h2>
+        <h1 class="timer-time">0.00</h1>
+        <button type="button" id="timer-increment">Increment</button>
+        <button type="button" id="timer-decrement">Decrement</button>
+        <button type="button" id="timer-start">Start</button>
+        <button type="button" id="timer-reset">Reset</button>
+      </div>
     </div>
     <script src="./main.js"></script>
   </body>

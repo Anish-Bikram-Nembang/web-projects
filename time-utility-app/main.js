@@ -1,18 +1,16 @@
 "use strict";
-const timeContainer = document.getElementsByClassName("time")[0];
-const dateContainer = document.getElementsByClassName("date")[0];
-
-function updateDateTime() {
-  let time = new Date();
-  timeContainer.textContent = time.toLocaleTimeString();
-  dateContainer.textContent = time.toLocaleDateString();
+class DateTime {
+  constructor(timeElement, dateElement) {
+    this.time = document.getElementsByClassName(timeElement)[0];
+    this.date = document.getElementsByClassName(dateElement)[0];
+  }
 }
-updateDateTime();
-setInterval(updateDateTime, 1000);
+const dateAndTime = new DateTime("time", "date");
 
 class StopWatch {
   #running = false;
   constructor(className) {
+    this.time = 0;
     this.startTime = 0;
     this.elapsedTime = 0;
     this.element = document.getElementsByClassName(className)[0];
@@ -24,7 +22,7 @@ class StopWatch {
       this.startIntervalID = setInterval(() => {
         const currentTime = Date.now();
         const total = this.elapsedTime + (currentTime - this.startTime);
-        this.element.textContent = (total / 1000).toFixed(2);
+        this.time = (total / 1000).toFixed(2);
       }, 16);
     }
   }
@@ -39,15 +37,43 @@ class StopWatch {
     this.stop();
     this.startTime = 0;
     this.elapsedTime = 0;
-    this.element.textContent = "0.00";
+    this.time = "0.00";
   }
 }
+class Timer {
+  //Todo
+}
 
+//for stopwatch
 const watch = new StopWatch("stop-watch-time");
-const startButton = document.getElementById("start");
-const stopButton = document.getElementById("stop");
-const resetButton = document.getElementById("reset");
-watch.element.textContent = "0.00";
-startButton.addEventListener("click", watch.start.bind(watch));
-stopButton.addEventListener("click", watch.stop.bind(watch));
-resetButton.addEventListener("click", watch.reset.bind(watch));
+const stopWatchStartButton = document.getElementById("stopwatch-start");
+const stopWatchStopButton = document.getElementById("stopwatch-stop");
+const stopWatchResetButton = document.getElementById("stopwatch-reset");
+
+stopWatchStartButton.addEventListener("click", watch.start.bind(watch));
+stopWatchStopButton.addEventListener("click", watch.stop.bind(watch));
+stopWatchResetButton.addEventListener("click", watch.reset.bind(watch));
+
+//for timer
+const timer = new Timer("timer-time");
+const timerIncrementButton = document.getElementById("timer-increment");
+const timerDecrementButton = document.getElementById("timer-decrement");
+const timerStartButton = document.getElementById("timer-start");
+const timerResetButton = document.getElementById("timer-reset");
+
+// timerIncrementButton.addEventListener("click");
+// timerDecrementButton.addEventListener("click");
+// timerStartButton.addEventListener("click");
+// timerResetButton.addEventListener("click");
+
+//main data to view function
+function dataToView() {
+  watch.element.textContent = watch.time;
+
+  //to update date and time
+  const dateAndTimeElement = new Date();
+  dateAndTime.time.textContent = dateAndTimeElement.toLocaleTimeString();
+  dateAndTime.date.textContent = dateAndTimeElement.toLocaleDateString();
+}
+
+setInterval(dataToView, 1000);
