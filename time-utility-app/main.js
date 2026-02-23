@@ -119,6 +119,7 @@ function dataToView() {
     if (timer.remaining <= 0) {
       timer.remaining = 0;
       timer.running = false;
+      timer.time = 0;
     }
 
     timer.element.textContent = (timer.remaining / 1000).toFixed(2);
