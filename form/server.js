@@ -1,14 +1,18 @@
 import pg from "pg";
 import express from "express";
 import fs from "fs/promises";
+import dotenv from "dotenv";
+import process from "process";
+
+dotenv.config();
 
 const app = express();
 const pool = new pg.Pool({
-  user: "postgres",
-  host: "localhost",
-  database: "iit",
-  password: "aryanisgay",
-  port: 5432,
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
 });
 
 app.use(express.json());
@@ -31,7 +35,7 @@ app.post("/adduser", async (req, res) => {
       `
   INSERT INTO 
    users
-  (username, password, checked)
+  (email, password, checked)
   VALUES 
   ($1, $2, $3)`,
       [email, password, checked],
