@@ -35,8 +35,13 @@ form/
 ### 1. Clone the repository
 
 ```
-git clone <your-repo-url>
-cd form
+git clone --filter=blob:none --no-checkout https://github.com/Anish-Bikram-Nembang/web-projects.git
+cd web-projects
+
+git sparse-checkout init --cone
+git sparse-checkout set form
+
+git checkout
 ```
 
 ---
